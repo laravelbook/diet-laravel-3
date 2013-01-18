@@ -5,11 +5,13 @@ diet-laravel-3
 
 ![](http://i.imgur.com/AoLUu.jpg)
 
+The default `laravel/` folder contains nearly 350 files, majority being PHP classes. Everytime a Laravel-based application boots up, PHP has to fetch hundreds of files and parse them.
+
 To improve performance of web applications, many developers utilize PHP op-code caching extensions such as APC, XCache and eAccelerator.
 
-When op-code caching is enabled, you can replace the traditional `laravel.php` with a different Laravel bootstrap file named `laravel_boot.php` (which acts as a wrapper around `laravel_lite.php`) to further boost the performance of your application.
+Regardless of whether op-code caching is enabled or not, you can replace the traditional `laravel.php` with a different Laravel bootstrap file named `laravel_boot.php` (which acts as a wrapper around `laravel_lite.php`) to further boost the performance of your application.
 
-The file `laravel_lite.php` is the result of merging commonly used Laravel and Symfony class files with some extraneous classes, comments and code decorations stripped away. Therefore, using the highly condensed and optimized `laravel_lite.php` would greatly reduce the number of files being included and drastically improve PHP parsing speed.
+The file `laravel_lite.php` is the result of merging commonly used Laravel and Symfony class files. Comments and other code decorations have been removed to boost PHP parsing. Additionally, some features (like command-line, artisan) have been deliberately stripped away since they are irrelevant in the CGI mode. Therefore, using the highly condensed and optimized `laravel_lite.php` would greatly reduce the number of files being included and drastically improve PHP parsing speed.
 
 ## Getting started
 
