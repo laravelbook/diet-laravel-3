@@ -15,13 +15,15 @@ Copy the two files `laravel_boot.php` and `laravel_lite.php` to your `laravel/` 
 
 Open the `public/index.php` file. Find the line below:
 
-	#!php
-	require path('sys').'laravel.php'; 
+```php
+require path('sys').'laravel.php'; 
+```
 
 Replace the above line with this:
 
-	#!php
-	require path('sys').'laravel_boot.php';
+```php
+require path('sys').'laravel_boot.php';
+```
 
 ### What's removed
 
@@ -31,6 +33,6 @@ The diet version of Laravel does not contain Artisan and other command-line base
 
 Rants, raves and bug reports are welcome.
 
-Copyright Taylor Otwell (C) [http://laravel.com/](http://laravel.com/)
+Copyright Taylor Otwell [http://laravel.com/](http://laravel.com/)
 
-Copyright Max Ehsan (C) 2013 [http://laravelbook.com/](http://laravelbook.com/)
+Portions Copyright Max Ehsan [http://laravelbook.com/](http://laravelbook.com/)
