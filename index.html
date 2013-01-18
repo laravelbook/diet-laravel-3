@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=640" />
+
+    <link rel="stylesheet" href="stylesheets/core.css" media="screen"/>
+    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)"/>
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
+
+    <script type="text/javascript" src="javascripts/modernizr.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#main_content').headsmart()
+      })
+    </script>
+    <title>Diet Laravel 3 by laravelbook</title>
+  </head>
+
+  <body>
+    <a id="forkme_banner" href="https://github.com/laravelbook/diet-laravel-3">View on GitHub</a>
+    <div class="shell">
+
+      <header>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <h1>Diet Laravel 3</h1>
+            <h2>Laravel 3 on crash-diet!</h2>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+      </header>
+
+      <section id="downloads">
+        <span class="inner">
+          <a href="https://github.com/laravelbook/diet-laravel-3/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/laravelbook/diet-laravel-3/tarball/master" class="tgz"><em>download</em> .TGZ</a>
+        </span>
+      </section>
+
+
+      <span class="banner-fix"></span>
+
+
+      <section id="main_content">
+        <h1>diet-laravel-3</h1>
+
+<p><strong>Laravel 3 on crash-diet!</strong></p>
+
+<p><img src="http://i.imgur.com/O8tej.jpg" alt=""></p>
+
+<p>To improve performance of web applications, many developers utilize PHP op-code caching libraries such as APC, XCache and eAccelerator.</p>
+
+<p>When op-code caching is enabled, you can replace the traditional <code>laravel.php</code> with a different Laravel bootstrap file named <code>laravel_boot.php</code> (which acts as a wrapper around <code>laravel_lite.php</code>) to further boost the performance of your application.</p>
+
+<p>The file <code>laravel_lite.php</code> is the result of merging commonly used Laravel and Symfony class files with some extraneous classes, comments and code decorations stripped away. Therefore, using the highly condensed and optimized <code>laravel_lite.php</code> would greatly reduce the number of files being included and drastically improve PHP parsing speed.</p>
+
+<h2>Getting started</h2>
+
+<p>Copy the two files <code>laravel_boot.php</code> and <code>laravel_lite.php</code> to your <code>laravel/</code> folder.</p>
+
+<p>Open the <code>public/index.php</code> file. Find the line below:</p>
+
+<div class="highlight"><pre><span class="k">require</span> <span class="nx">path</span><span class="p">(</span><span class="s1">'sys'</span><span class="p">)</span><span class="o">.</span><span class="s1">'laravel.php'</span><span class="p">;</span> 
+</pre></div>
+
+<p>Replace the above line with this:</p>
+
+<div class="highlight"><pre><span class="k">require</span> <span class="nx">path</span><span class="p">(</span><span class="s1">'sys'</span><span class="p">)</span><span class="o">.</span><span class="s1">'laravel_boot.php'</span><span class="p">;</span>
+</pre></div>
+
+<h3>What's removed</h3>
+
+<p>The diet version of Laravel does not contain Artisan and other command-line based features. These modules were deliberately stripped away to further optimize loading time of the web application. If you need to use the Artisan tool, switch back to regular <code>laravel.php</code> temporarily.</p>
+
+<h2>Feedback</h2>
+
+<p>Rants, raves and bug reports are welcome.</p>
+
+<p>Copyright Taylor Otwell <a href="http://laravel.com/">http://laravel.com/</a></p>
+
+<p>Portions Copyright Max Ehsan <a href="http://laravelbook.com/">http://laravelbook.com/</a></p>
+      </section>
+
+      <footer>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <p>this project by <a href="https://github.com/laravelbook">laravelbook</a> can be found on <a href="https://github.com/laravelbook/diet-laravel-3">GitHub</a></p>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+        <p>Generated with <a href="http://pages.github.com">GitHub Pages</a> using Merlot</p>
+        <span class="octocat"></span>
+      </footer>
+
+    </div>
+
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-37509080-3");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
