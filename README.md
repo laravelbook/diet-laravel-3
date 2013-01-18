@@ -3,6 +3,8 @@ diet-laravel-3
 
 **Laravel 3 on crash-diet!**
 
+![](http://i.imgur.com/O8tej.jpg)
+
 To improve performance of web applications, many developers utilize PHP op-code caching libraries such as APC, XCache and eAccelerator.
 
 When op-code caching is enabled, you can replace the traditional `laravel.php` with a different Laravel bootstrap file named `laravel_boot.php` (which acts as a wrapper around `laravel_lite.php`) to further boost the performance of your application.
