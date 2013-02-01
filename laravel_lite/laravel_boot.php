@@ -239,3 +239,10 @@ function get_file_size($size)
 // }
 
 require('laravel_lite.php');
+
+if ( defined('SYMFONY_EXTRA') ) {
+    require('symfony_extra.php');
+}
+if ( defined('LARAVEL_EXTRA') ) {
+    require('laravel_extra.php');
+}
