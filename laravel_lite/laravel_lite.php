@@ -1,20 +1,20 @@
 <?php
 /**
  * @package  Laravel 3 Lite
- * @version  3.2.13
+ * @version  3.2.14
  * @author   Taylor Otwell <taylorotwell@gmail.com>
- * @link     http://laravel.com 
+ * @link     http://laravel.com
  * @author   Max Ehsan <contact@laravelbook.com>
  * @link     http://laravelbook.com/
- * 
+ *
  * Highly condensed and optimized version of Laravel 3 framework.
- * 
- * This file is the result of merging commonly used Laravel and Symfony 
+ *
+ * This file is the result of merging commonly used Laravel and Symfony
  * class files with some extraneous components and comments stripped away.
  *
  * By using this file instead of laravel.php, an Laravel application may
  * improve performance due to the reduction of PHP parsing time.
- * The performance improvement will become especially obvious when PHP op-code 
+ * The performance improvement will become especially obvious when PHP op-code
  * caching engine such as the APC extension is enabled.
  *
  * DO NOT MODIFY THIS FILE MANUALLY!
@@ -720,14 +720,14 @@ namespace Laravel\Routing {
 	{
 		public static $names = array();
 		public static $uses = array();
-		public static $routes = array('GET' => array(), 'POST' => array(), 'PUT' => array(), 'DELETE' => array(), 'PATCH' => array(), 'HEAD' => array(),);
-		public static $fallback = array('GET' => array(), 'POST' => array(), 'PUT' => array(), 'DELETE' => array(), 'PATCH' => array(), 'HEAD' => array(),);
+		public static $routes = array('GET' => array(), 'POST' => array(), 'PUT' => array(), 'DELETE' => array(), 'PATCH' => array(), 'HEAD' => array(), 'OPTIONS'=> array(),);
+		public static $fallback = array('GET' => array(), 'POST' => array(), 'PUT' => array(), 'DELETE' => array(), 'PATCH' => array(), 'HEAD' => array(), 'OPTIONS'=> array(),);
 		public static $group;
 		public static $bundle;
 		public static $segments = 5;
 		public static $patterns = array('(:num)' => '([0-9]+)', '(:any)' => '([a-zA-Z0-9\.\-_%=]+)', '(:segment)' => '([^/]+)', '(:all)' => '(.*)',);
 		public static $optional = array('/(:num?)' => '(?:/([0-9]+)', '/(:any?)' => '(?:/([a-zA-Z0-9\.\-_%=]+)', '/(:segment?)' => '(?:/([^/]+)', '/(:all?)' => '(?:/(.*)',);
-		public static $methods = array('GET', 'POST', 'PUT', 'DELETE', 'HEAD');
+		public static $methods = array('GET', 'POST', 'PUT', 'DELETE', 'HEAD', 'OPTIONS');
 		public static function secure($method, $route, $action)
 		{
 			$action = static ::action($action);
@@ -6688,20 +6688,39 @@ namespace Laravel
 			if (is_null($constructor)) {
 				return new $type;
 			}
-			$dependencies = static ::dependencies($constructor->getParameters());
+			$dependencies = static ::dependencies($constructor->getParameters(), $parameters);
 			return $reflector->newInstanceArgs($dependencies);
 		}
-		protected static function dependencies($parameters)
+		protected static function dependencies($parameters, $arguments)
 		{
 			$dependencies = array();
 			foreach ($parameters as $parameter) {
 				$dependency = $parameter->getClass();
-				if (is_null($dependency)) {
-					throw new \Exception("Unresolvable dependency resolving [$parameter].");
+				if (count($arguments) > 0)
+				{
+					$dependencies[] = array_shift($arguments);
 				}
-				$dependencies[] = static ::resolve($dependency->name);
+				else if (is_null($dependency))
+				{
+					$dependency[] = static ::resolveNonClass($parameter);
+				}
+				else
+				{
+					$dependencies[] = static ::resolve($dependency->name);
+				}
 			}
 			return (array)$dependencies;
+		}
+		protected static function resolveNonClass($parameter)
+		{
+			if ($parameter->isDefaultValueAvailable())
+			{
+				return $parameter->getDefaultValue();
+			}
+			else
+			{
+				throw new \Exception("Unresolvable dependency resolving [$parameter].");
+			}
 		}
 	}
 	/**
@@ -8531,7 +8550,8 @@ namespace Laravel\Database
 			if (isset($values[$column])) {
 				return $values[$column];
 			} else if ($this->grammar instanceof Postgres) {
-				return (int)$result[0]->$column;
+				$row = (array) $result[0];
+				return (int) $row[$column];
 			} else {
 				return (int)$this->connection->pdo->lastInsertId();
 			}
