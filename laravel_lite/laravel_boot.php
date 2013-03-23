@@ -238,6 +238,7 @@ function get_file_size($size)
 // 	public function gc($lifetime);
 // }
 
+require('symfony_lite.php');
 require('laravel_lite.php');
 
 if ( defined('SYMFONY_EXTRA') ) {
